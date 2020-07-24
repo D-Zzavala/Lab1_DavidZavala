@@ -21,38 +21,47 @@ public class Lab1_DavidZavala {
         char sn = 's';
         while (sn == 's') {
             System.out.println("<Sistema Privado de Gobierno Corrupto>");
-            System.out.println("    <Operaciones Classificadas> ");
-            System.out.println("    <Simulador de Batalla Naval>");
-            System.out.println("         <  1) Ejecutar  >");
-            System.out.println("         <  2) Salir     >");
+            System.out.println("--------------------------------------");
+            System.out.println("-----<Operaciones  Classificadas>-----");
+            System.out.println("----<Simulador de Batalla Naval>------");
+            System.out.println("---------<  1) Ejecutar  >------------");
+            System.out.println("---------<  2) Salir     >------------");
+            System.out.println("--------------------------------------");
             int op = read.nextInt();
             switch (op) {
                 case 1: {
 
                     char[][] Mar1 = new char[Size][Size];
+                    Mar1 = FillMAt(Mar1, Size);
                     char[][] Mar2 = new char[Size][Size];
+                    Mar2 = FillMAt(Mar2, Size);
                     int Life1 = 100;
                     int Life2 = 100;
                     int Hits1 = 0;
                     int Hits2 = 0;
-                    String Jugador1 = JOptionPane.showInputDialog("Identificacion del Contrincante #1");
-                    System.out.println("Mar de: " + Jugador1);
+                    System.out.println("Identificacion del Contrincante #1");
+                    String Jugador1 = read.next();
 
-                    String Jugador2 = JOptionPane.showInputDialog("Identificacion del Contrincante #2");
-                    System.out.println("Mar de: " + Jugador2);
+                    System.out.println("Identificacion del Contrincante #2");
+                    String Jugador2 = read.next();
 
                     //empiezan turnos
                     boolean tf = true;
                     while (tf) {
                         //jugador1
-                        Mar1 = FillMAt(Mar1, Size);
+                        System.out.println(Jugador1 + "  |Vida Restante:" + Life1 + "  |Golpes recibidos:" + Hits1);
+                        System.out.println();
+                        System.out.println("Mar de:" + Jugador1);
                         PrintMat(Mar1, Size);
-                        Mar2 = FillMAt(Mar2, Size);
+                        System.out.println("-----------------------------");
+                        System.out.println("Mar de:" + Jugador2);
                         PrintMat(Mar2, Size);
                         System.out.println(Jugador1 + " ingrese las coordenadas de su disparo");
-                        int Lat1 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese longitud(1-8): "));
-                        char Lon1 = JOptionPane.showInputDialog("Ingrese latitud(A-H):").charAt(0);
-                        int x = Lat1 - 48;
+                        System.out.println("Ingrese longitud(0-7): ");
+                        int Lat1 = read.nextInt();
+                        System.out.println("Ingrese latitud(A-H):");
+                        char Lon1 = read.next().toUpperCase().charAt(0);
+                        int x = Lat1;
                         System.out.println(x);
                         int y = Lon1 - 65;
                         System.out.println(y);
@@ -60,20 +69,25 @@ public class Lab1_DavidZavala {
                         System.out.println("");
 
                         //jugador2
-                        Mar2 = FillMAt(Mar2, Size);
+                        System.out.println(Jugador2 + "  |Vida Restante:" + Life2 + "  |Golpes recibidos:" + Hits2);
+                        System.out.println();
+                        System.out.println("Mar de" + Jugador2);
                         PrintMat(Mar2, Size);
-                        Mar1 = FillMAt(Mar1, Size);
+                        System.out.println("-----------------------------");
+                        System.out.println("Mar de" + Jugador1);
                         PrintMat(Mar1, Size);
                         System.out.println(Jugador1 + " ingrese las coordenadas de su disparo");
-                        int Lat2 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese longitud(1-8): "));
-                        char Lon2 = JOptionPane.showInputDialog("Ingrese latitud(A-H):").charAt(0);
-                        x = Lat1 - 48;
+                        System.out.println("Ingrese longitud(0-7): ");
+                        int Lat2 = read.nextInt();
+                        System.out.println("Ingrese latitud(A-H):");
+                        char Lon2 = read.next().toUpperCase().charAt(0);
+                        x = Lat1;
                         System.out.println(x);
                         y = Lon1 - 65;
                         System.out.println(y);
                         Shots1(Mar2, x, y, Life1, Hits1);
                         System.out.println();
-                        
+
                         if (Hits1 == 12 || Hits1 == 3 && Hits2 == 0) {
                             System.out.println(Jugador1 + " ha derrotado a su contrincante " + Jugador2);
                         } else if (Hits1 == 12 || Hits1 == 3 && Hits2 == 0) {
@@ -81,16 +95,18 @@ public class Lab1_DavidZavala {
 
                         }
                     }
-
+                    System.out.println("Se salio esta shit");
                     break;
                 }
                 case 2: {
-                    JOptionPane.showMessageDialog(null, "Adios");
+                    System.out.println("      <Ejecución Exitosa>");
+                    System.out.println("<Eliminando archivos confidenciales>");
+
                     sn = 'n';
                     break;
                 }
                 default: {
-                    JOptionPane.showMessageDialog(null, "Opción inválida");
+                    System.out.println(" ¡¡¡Error!!! ");
                     break;
                 }
             }
@@ -122,7 +138,7 @@ public class Lab1_DavidZavala {
         for (int i = 0; i < tam; i++) {
             for (int j = 0; j < tam; j++) {
                 int A = i + 64;
-                int B = j + 48;
+                int B = j + 47;
                 if (i == 0 && j == 0 || i != 0 && j != 0) {
                     Mat[i][j] = ' ';
                 } else if (i == 0 && j > 0) {
